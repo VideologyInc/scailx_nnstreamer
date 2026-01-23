@@ -4,10 +4,9 @@
 
 gst-launch-1.0 \
   v4l2src device=/dev/video0 ! \
-  video/x-raw,format=NV12,width=640,height=512,framerate=9/1 ! \
+  video/x-raw,format=NV12,width=640,height=512,framerate=9/1 ! videocrop top=96 left=160 right=160 bottom=96 ! \
   tee name=t \
   t. ! queue leaky=no max-size-buffers=30 max-size-bytes=0 max-size-time=0 ! \
-  videocrop top=96 left=160 right=160 bottom=96 ! \
   videoconvert ! video/x-raw,width=320,height=320,format=RGB ! \
   tensor_converter ! \
   tensor_transform mode=arithmetic option=typecast:float32,add:0.0,div:255.0 ! \
