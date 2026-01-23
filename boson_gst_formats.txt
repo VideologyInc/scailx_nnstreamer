@@ -1,0 +1,33 @@
+Probing devices...
+Device found:
+
+	name  : Boson: FLIR Video
+	class : Video/Source
+	caps  : video/x-raw, format=NV12, width=640, height=514, pixel-aspect-ratio=1/1, framerate={ (fraction)9/1, (fraction)15/2 }
+	        video/x-raw, format=NV12, width=640, height=512, pixel-aspect-ratio=1/1, framerate={ (fraction)9/1, (fraction)15/2 }
+	        video/x-raw, format=I420, width=640, height=514, pixel-aspect-ratio=1/1, framerate={ (fraction)9/1, (fraction)15/2 }
+	        video/x-raw, format=I420, width=640, height=512, pixel-aspect-ratio=1/1, framerate={ (fraction)9/1, (fraction)15/2 }
+	        video/x-raw, format=GRAY16_LE, width=320, height=258, pixel-aspect-ratio=1/1, framerate={ (fraction)9/1, (fraction)15/2 }
+	        video/x-raw, format=GRAY16_LE, width=320, height=256, pixel-aspect-ratio=1/1, framerate={ (fraction)9/1, (fraction)15/2 }
+	properties:
+		udev-probed = true
+		device.bus_path = platform-xhci-hcd.1.auto-usb-0:1:1.0
+		sysfs.path = /sys/devices/platform/soc@0/32f10108.usb/38200000.usb/xhci-hcd.1.auto/usb1/1-1/1-1:1.0/video4linux/video0
+		device.bus = usb
+		device.subsystem = video4linux
+		device.vendor.id = 09cb
+		device.vendor.name = FLIR
+		device.product.id = 4007
+		device.product.name = Boson: FLIR Video
+		device.serial = FLIR_Boson_162780
+		device.capabilities = :capture:
+		device.api = v4l2
+		device.path = /dev/video0
+		v4l2.device.driver = uvcvideo
+		v4l2.device.card = Boson: FLIR Video
+		v4l2.device.bus_info = usb-xhci-hcd.1.auto-1
+		v4l2.device.version = 394804 (0x00060634)
+		v4l2.device.capabilities = 2225078273 (0x84a00001)
+		v4l2.device.device_caps = 69206017 (0x04200001)
+	gst-launch-1.0 v4l2src ! ...
+

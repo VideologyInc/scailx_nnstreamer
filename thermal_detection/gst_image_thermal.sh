@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 gst-launch-1.0 \
-    filesrc location=mono2.png ! pngdec ! videoscale ! videoconvert ! video/x-raw,width=640,height=640,format=RGB ! tee name=t \
+    filesrc location=mono.png ! pngdec ! videoscale ! videoconvert ! video/x-raw,width=640,height=640,format=RGB ! tee name=t \
     t. ! queue leaky=2 max-size-buffers=2 ! videoscale ! videoconvert ! video/x-raw,width=320,height=320,format=RGB ! \
     tensor_converter ! \
     tensor_transform mode=arithmetic option=typecast:float32,add:0.0,div:255.0 ! \
@@ -17,4 +17,4 @@ gst-launch-1.0 \
     compositor.sink_0 \
     compositor name=compositor sink_1::zorder=2 sink_0::zorder=1 ! \
     queue leaky=2 max-size-buffers=2 ! \
-    videoconvert ! pngenc ! filesink location=output.png
+    videoconvert ! pngenc ! filesink location=output0.png

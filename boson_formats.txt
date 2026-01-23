@@ -1,0 +1,24 @@
+ioctl: VIDIOC_ENUM_FMT
+	Type: Video Capture
+
+	[0]: 'YU12' (Planar YUV 4:2:0)
+		Size: Discrete 640x512
+			Interval: Discrete 0.111s (9.000 fps)
+			Interval: Discrete 0.133s (7.500 fps)
+		Size: Discrete 640x514
+			Interval: Discrete 0.111s (9.000 fps)
+			Interval: Discrete 0.133s (7.500 fps)
+	[1]: 'Y16 ' (16-bit Greyscale)
+		Size: Discrete 320x256
+			Interval: Discrete 0.111s (9.000 fps)
+			Interval: Discrete 0.133s (7.500 fps)
+		Size: Discrete 320x258
+			Interval: Discrete 0.111s (9.000 fps)
+			Interval: Discrete 0.133s (7.500 fps)
+	[2]: 'NV12' (Y/UV 4:2:0)
+		Size: Discrete 640x512
+			Interval: Discrete 0.111s (9.000 fps)
+			Interval: Discrete 0.133s (7.500 fps)
+		Size: Discrete 640x514
+			Interval: Discrete 0.111s (9.000 fps)
+			Interval: Discrete 0.133s (7.500 fps)
