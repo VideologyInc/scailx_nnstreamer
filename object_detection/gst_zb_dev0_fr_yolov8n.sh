@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 gst-launch-1.0 \
-  v4l2src device=/dev/video1 ! video/x-raw,format=RGB,width=640,height=360,framerate=60/1 ! \
+  v4l2src device=/dev/video0 ! video/x-raw,format=RGB,width=640,height=360,framerate=60/1 ! \
   videorate max-rate=10 ! video/x-raw,framerate=10/1 ! \
   queue leaky=2 max-size-buffers=10 ! videoscale method=0 ! video/x-raw,width=320,height=320 ! \
   tee name=t \
