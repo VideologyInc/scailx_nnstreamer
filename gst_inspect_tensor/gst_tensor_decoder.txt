@@ -1,0 +1,118 @@
+Factory Details:
+  Rank                     none (0)
+  Long-name                TensorDecoder
+  Klass                    Converter/Tensor
+  Description              Converts tensor stream of C-Array for neural network framework filters to audio or video stream
+  Author                   Jijoong Moon <jijoong.moon@samsung.com>
+
+Plugin Details:
+  Name                     nnstreamer
+  Description              nnstreamer plugin library
+  Filename                 /usr/lib/gstreamer-1.0/libnnstreamer.so
+  Version                  2.4.0
+  License                  LGPL
+  Source module            nnstreamer
+  Binary package           nnstreamer
+  Origin URL               https://github.com/nnstreamer/nnstreamer
+
+GObject
+ +----GInitiallyUnowned
+       +----GstObject
+             +----GstElement
+                   +----GstBaseTransform
+                         +----GstTensorDecoder
+
+Pad Templates:
+  SINK template: 'sink'
+    Availability: Always
+    Capabilities:
+      other/tensor
+              framerate: [ 0/1, 2147483647/1 ]
+      other/tensors
+                 format: static
+            num_tensors: [ 1, 16 ]
+              framerate: [ 0/1, 2147483647/1 ]
+      other/tensors
+                 format: flexible
+              framerate: [ 0/1, 2147483647/1 ]
+  
+  SRC template: 'src'
+    Availability: Always
+    Capabilities:
+      ANY
+
+Element has no clocking capabilities.
+Element has no URI handling capabilities.
+
+Pads:
+  SINK: 'sink'
+    Pad Template: 'sink'
+  SRC: 'src'
+    Pad Template: 'src'
+
+Element Properties:
+
+  config-file         : sets config file path which contains plugins properties
+                        flags: readable, writable
+                        String. Default: null
+  
+  mode                : Decoder mode
+                        flags: readable, writable
+                        String. Default: ""
+  
+  name                : The name of the object
+                        flags: readable, writable
+                        String. Default: "tensordecoder0"
+  
+  option1             : option for specific decoder modes, 1st one.
+                        flags: readable, writable
+                        String. Default: null
+  
+  option2             : option for specific decoder modes, 2nd one.
+                        flags: readable, writable
+                        String. Default: null
+  
+  option3             : option for specific decoder modes, 3rd one.
+                        flags: readable, writable
+                        String. Default: null
+  
+  option4             : option for specific decoder modes, 4th one.
+                        flags: readable, writable
+                        String. Default: null
+  
+  option5             : option for specific decoder modes, 5th one.
+                        flags: readable, writable
+                        String. Default: null
+  
+  option6             : option for specific decoder modes, 6th one.
+                        flags: readable, writable
+                        String. Default: null
+  
+  option7             : option for specific decoder modes, 7th one.
+                        flags: readable, writable
+                        String. Default: null
+  
+  option8             : option for specific decoder modes, 8th one.
+                        flags: readable, writable
+                        String. Default: null
+  
+  option9             : option for specific decoder modes, 9th one.
+                        flags: readable, writable
+                        String. Default: null
+  
+  parent              : The parent of the object
+                        flags: readable, writable
+                        Object of type "GstObject"
+  
+  qos                 : Handle Quality-of-Service events
+                        flags: readable, writable
+                        Boolean. Default: false
+  
+  silent              : Produce verbose output
+                        flags: readable, writable
+                        Boolean. Default: true
+  
+  sub-plugins         : Registrable sub-plugins list
+                        flags: readable
+                        String. Default: "bounding_boxes,direct_video,image_labeling,image_segment,octet_stream,pose_estimation,protobuf,python3,tensor_region"
+  
