@@ -1,0 +1,97 @@
+Factory Details:
+  Rank                     none (0)
+  Long-name                TensorTransform
+  Klass                    Filter/Tensor
+  Description              Transforms other/tensor dimensions for different models or frameworks
+  Author                   MyungJoo Ham <myungjoo.ham@samsung.com>
+
+Plugin Details:
+  Name                     nnstreamer
+  Description              nnstreamer plugin library
+  Filename                 /usr/lib/gstreamer-1.0/libnnstreamer.so
+  Version                  2.4.0
+  License                  LGPL
+  Source module            nnstreamer
+  Binary package           nnstreamer
+  Origin URL               https://github.com/nnstreamer/nnstreamer
+
+GObject
+ +----GInitiallyUnowned
+       +----GstObject
+             +----GstElement
+                   +----GstBaseTransform
+                         +----GstTensorTransform
+
+Pad Templates:
+  SINK template: 'sink'
+    Availability: Always
+    Capabilities:
+      other/tensor
+              framerate: [ 0/1, 2147483647/1 ]
+      other/tensors
+                 format: { (string)static, (string)flexible }
+              framerate: [ 0/1, 2147483647/1 ]
+  
+  SRC template: 'src'
+    Availability: Always
+    Capabilities:
+      other/tensor
+              framerate: [ 0/1, 2147483647/1 ]
+      other/tensors
+                 format: { (string)static, (string)flexible }
+              framerate: [ 0/1, 2147483647/1 ]
+
+Element has no clocking capabilities.
+Element has no URI handling capabilities.
+
+Pads:
+  SINK: 'sink'
+    Pad Template: 'sink'
+  SRC: 'src'
+    Pad Template: 'src'
+
+Element Properties:
+
+  acceleration        : Orc acceleration
+                        flags: readable, writable
+                        Boolean. Default: true
+  
+  apply               : Select tensors to apply, separated with ',' in case of multiple tensors. Default to apply all tensors.
+                        flags: readable, writable
+                        String. Default: ""
+  
+  mode                : Mode used for transforming tensor
+                        flags: readable, writable
+                        Enum "gtt_mode_type" Default: -1, "unknown"
+                           (0): dimchg           - Mode for changing tensor dimensions, option=FROM_DIM:TO_DIM (with a regex, ^([0-9]|1[0-5]):([0-9]|1[0-5])$, where NNS_TENSOR_RANK_LIMIT is 16)
+                           (1): typecast         - Mode for casting type of tensor, option=(^[u]?int(8|16|32|64)$|^float(16|32|64)$)
+                           (2): arithmetic       - Mode for arithmetic operations with tensor, option=[typecast:TYPE,][per-channel:(false|true@DIM),]add|mul|div:NUMBER[@CH_IDX], ...
+                           (3): transpose        - Mode for transposing shape of tensor, option=D1':D2':D3':D4 (fixed to 3)
+                           (4): stand            - Mode for statistical standardization of tensor, option=(default|dc-average)[:TYPE][,per-channel:(false|true)]
+                           (5): clamp            - Mode for clamping all elements of tensor into the range, option=CLAMP_MIN:CLAMP_MAX
+                           (-1): unknown          - Unknown or not-implemented-yet mode
+  
+  name                : The name of the object
+                        flags: readable, writable
+                        String. Default: "tensortransform0"
+  
+  option              : Option for the tensor transform mode ?
+                        flags: readable, writable
+                        String. Default: null
+  
+  parent              : The parent of the object
+                        flags: readable, writable
+                        Object of type "GstObject"
+  
+  qos                 : Handle Quality-of-Service events
+                        flags: readable, writable
+                        Boolean. Default: false
+  
+  silent              : Produce verbose output ?
+                        flags: readable, writable
+                        Boolean. Default: true
+  
+  transpose-rank-limit: The rank limit of transpose, which varies per version of nnstreamer and may be lower than the global rank limit if it is over 4.
+                        flags: readable
+                        Unsigned Integer. Range: 0 - 16 Default: 4 
+  

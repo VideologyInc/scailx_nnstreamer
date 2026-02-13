@@ -1,0 +1,104 @@
+Factory Details:
+  Rank                     none (0)
+  Long-name                TensorConverter
+  Klass                    Converter/Tensor
+  Description              Converts an audio, video, text, or arbitrary stream to a tensor stream of C-Array for neural network framework filters
+  Author                   MyungJoo Ham <myungjoo.ham@samsung.com>
+
+Plugin Details:
+  Name                     nnstreamer
+  Description              nnstreamer plugin library
+  Filename                 /usr/lib/gstreamer-1.0/libnnstreamer.so
+  Version                  2.4.0
+  License                  LGPL
+  Source module            nnstreamer
+  Binary package           nnstreamer
+  Origin URL               https://github.com/nnstreamer/nnstreamer
+
+GObject
+ +----GInitiallyUnowned
+       +----GstObject
+             +----GstElement
+                   +----GstTensorConverter
+
+Pad Templates:
+  SINK template: 'sink'
+    Availability: Always
+    Capabilities:
+      video/x-raw
+                 format: { (string)RGB, (string)BGR, (string)RGBx, (string)BGRx, (string)xRGB, (string)xBGR, (string)RGBA, (string)BGRA, (string)ARGB, (string)ABGR, (string)GRAY8, (string)GRAY16_BE, (string)GRAY16_LE }
+                  width: [ 1, 2147483647 ]
+                 height: [ 1, 2147483647 ]
+              framerate: [ 0/1, 2147483647/1 ]
+         interlace-mode: progressive
+      audio/x-raw
+                 format: { (string)S8, (string)U8, (string)S16LE, (string)S16BE, (string)U16LE, (string)U16BE, (string)S32LE, (string)S32BE, (string)U32LE, (string)U32BE, (string)F32LE, (string)F32BE, (string)F64LE, (string)F64BE }
+                   rate: [ 1, 2147483647 ]
+               channels: [ 1, 2147483647 ]
+                 layout: interleaved
+      text/x-raw
+                 format: utf8
+      application/octet-stream
+      other/tensors
+                 format: flexible
+              framerate: [ 0/1, 2147483647/1 ]
+      other/protobuf-tensor
+              framerate: [ 0/1, 2147483647/1 ]
+      application/octet-stream
+  
+  SRC template: 'src'
+    Availability: Always
+    Capabilities:
+      other/tensor
+              framerate: [ 0/1, 2147483647/1 ]
+      other/tensors
+                 format: { (string)static, (string)flexible }
+              framerate: [ 0/1, 2147483647/1 ]
+
+Element has no clocking capabilities.
+Element has no URI handling capabilities.
+
+Pads:
+  SINK: 'sink'
+    Pad Template: 'sink'
+  SRC: 'src'
+    Pad Template: 'src'
+
+Element Properties:
+
+  frames-per-tensor   : The number of frames in output tensor
+                        flags: readable, writable
+                        Unsigned Integer. Range: 1 - 4294967295 Default: 1 
+  
+  input-dim           : Input tensor dimension from inner array
+                        flags: readable, writable
+                        String. Default: ""
+  
+  input-type          : Type of each element of the input tensor
+                        flags: readable, writable
+                        String. Default: ""
+  
+  mode                : Converter mode. e.g., mode=custom-code:<registered callback name>. For detail, refer to https://github.com/nnstreamer/nnstreamer/blob/main/gst/nnstreamer/elements/gsttensor_converter.md#custom-converter
+                        flags: readable, writable
+                        String. Default: ""
+  
+  name                : The name of the object
+                        flags: readable, writable
+                        String. Default: "tensorconverter0"
+  
+  parent              : The parent of the object
+                        flags: readable, writable
+                        Object of type "GstObject"
+  
+  set-timestamp       : The flag to set timestamp when received a buffer with invalid timestamp
+                        flags: readable, writable
+                        Boolean. Default: true
+  
+  silent              : Produce verbose output
+                        flags: readable, writable
+                        Boolean. Default: true
+  
+  sub-plugins         : Registrable sub-plugins list
+                        flags: readable
+                        String. Default: "python3,protobuf"
+  
